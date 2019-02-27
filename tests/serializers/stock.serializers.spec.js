@@ -2,16 +2,14 @@
 const assert = require('assert')
 const stockSerializer = require('../../src/serializers/stock.serializer');
 
-console.log('-- RUNNING STOCK SERIALIZER TEST --');
-
 function testEmptyData() {
+  let context = "[STOCK SERIALIZER]: When the data is empty";
   const expected = {
     price: 'none',
     company_logo_url: 'none',
     latest_news_url: 'none'
   };
 
-  /** Context: When the data is empty */
   const emptyData = [{
       quote: ''
     },
@@ -24,20 +22,19 @@ function testEmptyData() {
   ];
 
   const actual = stockSerializer.serialize(emptyData);
-
-  assert.deepStrictEqual(actual, expected, "✖ FAILED: Empty data must return properties with value of 'none'");
-  console.log('✔ SUCCEED: Empty data');
+  assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Empty data must return properties with value of 'none'`);
+  console.log(`${context} \n✔ SUCCEED: Empty data`);
 }
 
 
 function testInvalidData() {
+  let context = "[STOCK SERIALIZER]: When the data is invalid";
   const expected = {
     price: 'none',
     company_logo_url: 'none',
     latest_news_url: 'none'
   };
 
-  /** Context: When the data is invalid */
   const invalidData = [{
       invalid_quote: ''
     },
@@ -50,19 +47,18 @@ function testInvalidData() {
   ];
 
   const actual = stockSerializer.serialize(invalidData);
-
-  assert.deepStrictEqual(actual, expected, "✖ FAILED: Invalid data must return properties with value of 'none'");
-  console.log('✔ SUCCEED: Invalid data');
+  assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Invalid data must return properties with value of 'none'`);
+  console.log(`${context} \n✔ SUCCEED: Invalid data`);
 }
 
 function testValidData() {
+  let context = "[STOCK SERIALIZER]: When the data is valid";
   const expected = {
     price: 200,
     company_logo_url: 'http://somelink.com',
     latest_news_url: 'http://somelink.com'
   };
 
-  /** Context: When the data is valid */
   const validData = [{
       quote: {
         'latestPrice': 200
@@ -81,9 +77,8 @@ function testValidData() {
   ];
 
   const actual = stockSerializer.serialize(validData);
-
-  assert.deepStrictEqual(actual, expected, '✖ FAILED: Valid data must return properties');
-  console.log('✔ SUCCEED: Valid data');
+  assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Valid data must return properties`);
+  console.log(`${context} \n✔ SUCCEED: Valid data`);
 }
 
 

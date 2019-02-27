@@ -2,10 +2,8 @@
 const assert = require('assert')
 const stocksController = require('../../src/controllers/stocks.controller');
 
-console.log('-- RUNNING STOCKS CONTROLLER TEST --');
-
-/** Context: When the action is invalid */
 async function testInvalidAction() {
+  let context = "[STOCKS CONTROLLER]: When the action is invalid";
   const expected = {
     status: 404,
     payload: "Method wrong does not exist in StocksController"
@@ -16,13 +14,13 @@ async function testInvalidAction() {
       method: 'GET'
     });
   } catch (actual) {
-    assert.deepStrictEqual(actual, expected, "✖ FAILED: Invalid action must return error status and message");
-    console.log('✔ SUCCEED: Default error message was returned');
+    assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Invalid action must return error status and message`);
+    console.log(`${context} \n✔ SUCCEED: Default error message was returned`);
   }
 };
 
-/** Context: When the params are invalid */
 async function testEmptyParams() {
+  let context = "[STOCKS CONTROLLER]: When the params are invalid";
   const expected = {
     status: 400,
     payload: 'Params can not be empty'
@@ -31,13 +29,13 @@ async function testEmptyParams() {
   try {
     await stocksController('show', {});
   } catch (actual) {
-    assert.deepStrictEqual(actual, expected, "✖ FAILED: Empty params must return error status and message");
-    console.log('✔ SUCCEED: Default empty params error message was returned');
+    assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Empty params must return error status and message`);
+    console.log(`${context} \n✔ SUCCEED: Default empty params error message was returned`);
   }
 };
 
-/** Context: When the request fails */
 async function testFailedRequest() {
+  let context = "[STOCKS CONTROLLER]: When the request fails";
   const expected = {
     status: 404,
     payload: 'Unknown symbol'
@@ -51,13 +49,13 @@ async function testFailedRequest() {
   try {
     await stocksController('show', params);
   } catch (actual) {
-    assert.deepStrictEqual(actual, expected, "✖ FAILED: Failed request must return error status and message");
-    console.log('✔ SUCCEED: Request error message was returned');
+    assert.deepStrictEqual(actual, expected, `${context} \n✖ FAILED: Failed request must return error status and message`);
+    console.log(`${context} \n✔ SUCCEED: Request error message was returned`);
   }
 };
 
-/** Context: When the request succeeds */
 async function testSucceededRequest() {
+  let context = "[STOCKS CONTROLLER]: When the request succeeds";
   const expected = {
     status: 200,
     payload: {}
@@ -67,11 +65,9 @@ async function testSucceededRequest() {
     method: 'GET',
     path: '/stocks/aapl'
   }
-
   const actual = await stocksController('show', params);
-
-  assert.deepStrictEqual(Object.keys(actual), Object.keys(expected), "✖ FAILED: Success request must return error status and message");
-  console.log('✔ SUCCEED: Sucess message was returned');
+  assert.deepStrictEqual(Object.keys(actual), Object.keys(expected), `${context} \n✖ FAILED: Success request must return error status and message`);
+  console.log(`${context} \n✔ SUCCEED: Sucess message was returned`);
 };
 
 [testInvalidAction, testEmptyParams, testFailedRequest, testSucceededRequest].forEach(fn => fn());
