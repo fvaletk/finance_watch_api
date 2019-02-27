@@ -1,7 +1,6 @@
 /** Dependencies */
-const url = require('url');
 const { resolve } = require('path');
-const { appendFile } = require('fs');
+const fs = require('fs');
 
 /** Constants */
 const LOG_FILE = resolve(__dirname, '..' , '..','log.txt');
@@ -19,12 +18,13 @@ const formatRequestData = (req, status) => {
 [${data.method}] [${data.path}] [${parseAndFormatDate()}] [${currentStatus}]`;
 };
 
-const appendToFile = (fileData) => appendFile(LOG_FILE, fileData, {
+const appendToFile = (fileData) => fs.appendFile(LOG_FILE, fileData, {
   encoding: 'utf-8'
 }, () => {});
 
 const logger = (req, status) => {
-  appendToFile(formatRequestData(req, status))
+  fs.closeSync(fs.openSync(LOG_FILE, 'a'))
+  appendToFile(formatRequestData(req, status));
 };
 
 module.exports = logger;
