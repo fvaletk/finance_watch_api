@@ -75,3 +75,23 @@
 [/GET] [/stocks/appl] [26/2/2019 17:52:42] [status => 200 && status < 300 ? "Success" : "Failed"]
 
 [/GET] [/stocks/aapl] [26/2/2019 17:52:58] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aapl] [26/2/2019 19:20:24] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aapln] [26/2/2019 19:20:53] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aapl] [26/2/2019 19:21:4] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aap] [26/2/2019 19:21:12] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aap] [26/2/2019 19:22:14] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aap] [26/2/2019 19:28:34] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aapl] [26/2/2019 19:28:40] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks] [26/2/2019 19:29:41] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/appl] [26/2/2019 19:32:2] [status => 200 && status < 300 ? "Success" : "Failed"]
+
+[/GET] [/stocks/aapl] [26/2/2019 19:32:7] [status => 200 && status < 300 ? "Success" : "Failed"]

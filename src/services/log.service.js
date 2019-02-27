@@ -13,7 +13,7 @@ const parseAndFormatDate = require('../utils/parseAndFormatDate');
 /** Methods */
 const formatRequestData = (req, status) => {
   const data = parseRequest(req);
-  const currentStatus = status => 200 && status < 300 ? "Success" : "Failed";
+  const currentStatus = (status => 200 && status < 300 ? "Success" : "Failed");
   return `
 
 [/${data.method}] [${data.path}] [${parseAndFormatDate()}] [${currentStatus}]`;

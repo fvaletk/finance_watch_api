@@ -14,7 +14,7 @@ const fetchQuote = (stockSymbol) => {
 };
 
 const fetchCompanyLogo = (stockSymbol) => {
-  const url = `${API_BASE_URL}/stock/${stockSymbol}/logos`;
+  const url = `${API_BASE_URL}/stock/${stockSymbol}/logo`;
   return requestService('company_logo', url);
 };
 
@@ -23,16 +23,17 @@ const fetchLatestNews = (stockSymbol) => {
   return requestService('latest_news', url);
 };
 
-const fetchInformation = (stockSymbol) => {
-  return Promise.all([
-          fetchQuote(stockSymbol),
-          fetchCompanyLogo(stockSymbol),
-          fetchLatestNews(stockSymbol)
-        ])
-          .then(stockSerializer.serialize)
-          .catch((error) => {
-            throw error;
-          })
+const fetchInformation = async (stockSymbol) => {
+  try {    
+    const response = await Promise.all([
+      fetchQuote(stockSymbol),
+      fetchCompanyLogo(stockSymbol),
+      fetchLatestNews(stockSymbol)
+    ]);
+    return stockSerializer.serialize(response);
+  } catch(error) {
+    throw error;
+  }
 };
 
 module.exports = { fetchInformation: fetchInformation };

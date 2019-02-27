@@ -24,14 +24,13 @@ const getRoute = (requestData) => {
   return route;
 };
 
-const executeController = (route, requestData, callback) => {
-  return route.controller(route.action, requestData)
-          .then((response) => {
-            callback(response.status, response.payload);
-          })
-          .catch((error) => {
-            callback(error.status, { "error": error.payload });    
-          })
+const executeController = async (route, requestData, callback) => {
+  try {
+    const response = await route.controller(route.action, requestData);
+    callback(response.status, response.payload);
+  } catch(error) {
+    callback(error.status, { "error": error.payload });    
+  }
 };
 
 const handleRequest = (req, callback) => {
