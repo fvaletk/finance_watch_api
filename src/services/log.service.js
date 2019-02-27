@@ -23,7 +23,6 @@ const appendToFile = (fileData) => fs.appendFile(LOG_FILE, fileData, {
 }, () => {});
 
 const logger = (req, status) => {
-  fs.closeSync(fs.openSync(LOG_FILE, 'a'))
   appendToFile(formatRequestData(req, status));
 };
 
