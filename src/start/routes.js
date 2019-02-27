@@ -7,7 +7,7 @@ const stocks = [
     method: 'GET',
     controller: stocksController,
     action: 'show',
-    pathPattern: '\/stocks\/[a-z]+'
+    pathPattern: '\/stocks\/[a-z]+$'
   }
 ];
 
